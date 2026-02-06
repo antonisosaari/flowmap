@@ -1,7 +1,7 @@
 import yaml from 'js-yaml';
 import type { FlowMap, FlowNode, NodeType, RawYamlData, RawYamlNode } from '../types';
 
-const nodeTypeKeys: NodeType[] = ['screen', 'action', 'navigation', 'state', 'result'];
+const nodeTypeKeys: NodeType[] = ['screen', 'action', 'navigation', 'state', 'result', 'error', 'condition'];
 
 function parseNode(rawNode: RawYamlNode): FlowNode | null {
   for (const key of nodeTypeKeys) {

@@ -2,6 +2,53 @@ export const rentCheckExample = `name: RentCheck
 description: Vuokranantajan työpöytäsovellus
 
 flows:
+  - screen: Kirjautuminen
+    description: Sovelluksen aloitusnäkymä
+    children:
+      - action: Syötä sähköposti
+        children:
+          - condition: Onko validi sähköposti?
+            description: IF/ELSE validointi
+            children:
+              - state: JOS validi
+                children:
+                  - action: Syötä salasana
+                    children:
+                      - action: Klikkaa Kirjaudu
+                        children:
+                          - condition: Tarkista kirjautuminen
+                            children:
+                              - state: JOS onnistui
+                                children:
+                                  - navigation: → Koti (Dashboard)
+                              - state: MUUTEN virhe
+                                children:
+                                  - error: Väärä salasana
+                                    description: Näytä virheviesti
+                                    children:
+                                      - action: Yritä uudelleen
+                                        children:
+                                          - navigation: ← takaisin
+                          - condition: Nettiyhteys katkeaa
+                            description: Verkkovirhe
+                            children:
+                              - error: Ei yhteyttä palvelimeen
+                                children:
+                                  - action: Yritä uudelleen
+                                    children:
+                                      - navigation: ← lataa sivu uudelleen
+                                  - action: Offline-tila
+                                    children:
+                                      - screen: Offline-näkymä
+                                        description: Rajoitetut toiminnot
+              - state: MUUTEN virheellinen
+                children:
+                  - error: Virheellinen sähköpostiosoite
+                    children:
+                      - action: Korjaa syöte
+                        children:
+                          - navigation: ← takaisin kenttään
+
   - screen: Koti (Dashboard)
     description: Päänäkymä - kaikki asunnot listana
     children:

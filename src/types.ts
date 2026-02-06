@@ -1,4 +1,4 @@
-export type NodeType = 'screen' | 'action' | 'navigation' | 'state' | 'result';
+export type NodeType = 'screen' | 'action' | 'navigation' | 'state' | 'result' | 'error' | 'condition';
 
 export interface FlowNode {
   type: NodeType;
@@ -19,6 +19,8 @@ export interface RawYamlNode {
   navigation?: string;
   state?: string;
   result?: string;
+  error?: string;
+  condition?: string;
   description?: string;
   children?: RawYamlNode[];
 }

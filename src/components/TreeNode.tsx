@@ -6,7 +6,9 @@ import {
   MousePointerClick, 
   Navigation, 
   GitBranch, 
-  CheckCircle2 
+  CheckCircle2,
+  AlertTriangle,
+  HelpCircle
 } from 'lucide-react';
 import type { FlowNode, NodeType } from '../types';
 
@@ -45,6 +47,18 @@ const nodeConfig: Record<NodeType, {
     bgClass: 'bg-teal-500/20',
     borderClass: 'border-teal-500/30',
     iconClass: 'text-teal-400'
+  },
+  error: { 
+    icon: AlertTriangle, 
+    bgClass: 'bg-red-500/20',
+    borderClass: 'border-red-500/30',
+    iconClass: 'text-red-400'
+  },
+  condition: { 
+    icon: HelpCircle, 
+    bgClass: 'bg-orange-500/20',
+    borderClass: 'border-orange-500/30',
+    iconClass: 'text-orange-400'
   },
 };
 
